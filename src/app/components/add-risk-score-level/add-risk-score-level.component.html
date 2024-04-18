@@ -1,0 +1,38 @@
+<div mat-dialog-title>
+    <h1>Add Risk Score Level</h1>
+</div>
+<form [formGroup]="riskScoreForm" (ngSubmit)="onFormSubmit()">
+<div mat-dialog-content class="content">
+    <div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Level</mat-label>
+        <input matInput placeholder="Add Level" type="text"   oninput="this.value = this.value.replace(/[^a-z ]+/g, '')" 
+        formControlName="level" required>
+      </mat-form-field>
+</div>
+<div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Min Score</mat-label>
+        <input matInput placeholder="MinScore" type="number"   
+        oninput="this.value = this.value.replace(/[^0-9]/g, ''); 
+        if (!/^(?:[1-9]|[1-9][0-9]|100)$/.test(this.value)) this.value = '';"
+        formControlName="minScore" required>
+      </mat-form-field>
+</div>
+<div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Max Score</mat-label>
+        <input matInput placeholder="MaxScore" type="number"   
+        oninput="this.value = this.value.replace(/[^0-9]/g, ''); 
+        if (!/^(?:[1-9]|[1-9][0-9]|100)$/.test(this.value)) this.value = '';"
+        formControlName="maxScore" required>
+      </mat-form-field>
+</div>
+
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-raised-button color="warn" type="button" mat-dialog-close="false">Cancel</button>
+    <button mat-raised-button color="primary" type="Submit">{{data ? 'Update': 'Save'}}</button>
+</div>
+</form>
+

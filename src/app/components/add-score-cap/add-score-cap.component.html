@@ -1,0 +1,44 @@
+<div mat-dialog-title>
+    <h1>Add Score Cap</h1>
+</div>
+<form [formGroup]="scoreCapForm" (ngSubmit)="onFormSubmit()">
+<div mat-dialog-content class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Condition Value</mat-label>                              
+            <input matInput placeholder="Condition Value" type="text"   
+            oninput="this.value = this.value.replace(/[^0-9]/g, ''); 
+            if (!/^(?:[1-9]|[1-9][0-9]|100)$/.test(this.value)) this.value = '';" 
+            formControlName="conditionValue" required>
+          </mat-form-field>
+    </div>
+  
+<div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Condition</mat-label>
+      <mat-select placeholder="Condition" formControlName="level" required>
+        <!-- Replace 'conditions' with the actual data for your dropdown options -->
+        <mat-option *ngFor="let level  of levels " [value]="level">
+          {{level}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+<div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Total_Risk_Capped_Score</mat-label>
+        <input matInput placeholder="Total_Risk_Capped_Score" type="text"  
+        oninput="this.value = this.value.replace(/[^0-9]/g, ''); 
+        if (!/^(?:[1-9]|[1-9][0-9]|100)$/.test(this.value)) this.value = '';"
+        formControlName="total_risk_capped_score" required>
+      </mat-form-field>
+</div>
+
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-raised-button color="warn" type="button" mat-dialog-close="false">Cancel</button>
+    <button mat-raised-button color="primary" type="Submit">{{data ? 'Update': 'Save'}}</button>
+</div>
+</form>
+

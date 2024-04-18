@@ -1,0 +1,24 @@
+<div class="btn">
+  <button mat-fab extended color="accent"
+ (click)="companyRiskScoreForm()">ADD Company & Dimension</button>
+</div>
+<div class="main-body">
+  <div class="card-container"  *ngIf="dataSource?.data" [@cardAnimation]="dataSource.data.length">
+    <mat-card *ngFor="let row of dataSource.data">
+      <mat-card-header>
+        <mat-card-title>Company :</mat-card-title><mat-card-subtitle>{{row.companyName }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let dimension of row.dimensions | keyvalue" class="dimension">
+          <p>{{dimension.key }} :<mat-card-subtitle>{{dimension.value}}</mat-card-subtitle></p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-icon-button color="primary" (click)="openEditCompanyRiskScoreForm(row.companyName)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        <button mat-icon-button color="warn" (click)="deleteCompanyRiskScore(row.companyName)"><mat-icon>delete</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+

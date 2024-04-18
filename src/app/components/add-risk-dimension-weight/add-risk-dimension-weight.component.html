@@ -1,0 +1,29 @@
+<div mat-dialog-title>
+    <h1>Add Dimesion-Weight</h1>
+</div>
+<form [formGroup]="dimensionWeightForm" (ngSubmit)="onFormSubmit()">
+<div mat-dialog-content class="content">
+    <div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Dimension</mat-label>
+        <input matInput placeholder="Dimension" type="text" oninput="this.value = this.value.replace(/[^a-zA-Z\']+/, '')" formControlName="dimension">
+      </mat-form-field>
+</div>
+<div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Weight</mat-label>
+        <input matInput placeholder="Weight" type="number"
+        oninput="this.value = this.value.replace(/[^0-9]/g, ''); 
+                    if (!/^(?:[1-9]|[1-9][0-9]|100)$/.test(this.value)) this.value = '';"
+        formControlName="weight">
+      </mat-form-field>
+</div>
+
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-raised-button color="warn" type="button" mat-dialog-close="false">Cancel</button>
+    <button mat-raised-button color="primary" type="Submit">{{data ? 'Update': 'Save'}}</button>
+</div>
+</form>
+
+  

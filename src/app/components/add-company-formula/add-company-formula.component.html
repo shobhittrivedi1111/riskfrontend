@@ -1,0 +1,79 @@
+<mat-card class="custom-card">
+  <div mat-dialog-title>
+    <h1>{{ data ? 'Edit Formula' : 'Add Formula' }}</h1>
+  </div>
+  <form [formGroup]="formulaForm">
+
+    <div mat-dialog-content class="content">
+      <div>
+      <!-- Element Name -->
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Element Name</mat-label>
+          <input matInput placeholder="Element Name" type="text" formControlName="elementName"
+          oninput="this.value = this.value.replace(/[^a-z_ ]+/g, '')" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Select Formula</mat-label>
+          <mat-select formControlName="selectedFormula">
+            <mat-option value="total_risk_capped_score">TotalRiskCappedScore</mat-option>
+            <mat-option *ngFor="let formula of formulaList" [value]="formula">{{ formula }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-icon-button (click)="addSelectedFormula()" *ngIf="formulaForm.get('selectedFormula')?.value">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+   
+
+      <div class="row">
+          <mat-form-field appearance="outline">
+             <mat-label>Number</mat-label>
+           <input matInput placeholder="Number" type="number"
+           oninput="this.value = this.value.replace(/[^0-9]/g, ''); 
+                    if (!/^(?:[1-9]|[1-9][0-9]|100)$/.test(this.value)) this.value = '';" formControlName="numberInput">
+           </mat-form-field>
+       <button mat-icon-button (click)="addNumberToFormula()" *ngIf="formulaForm.get('numberInput')?.value">
+     <mat-icon>add</mat-icon>
+    </button>
+  <mat-form-field appearance="outline">
+    <mat-label>Select Operator</mat-label>
+    <mat-select formControlName="selectedOperator">
+      <mat-option value="+">Addition (+)</mat-option>
+      <mat-option value="-">Subtraction (-)</mat-option>
+      <mat-option value="*">Multiplication (*)</mat-option>
+      <mat-option value="/">Division (/)</mat-option>
+      <mat-option value="max">Maximum (max)</mat-option>
+      <mat-option value="min">Minimum (min)</mat-option>
+      <mat-option value="(">Open Brace (()</mat-option>
+      <mat-option value=")">Close Brace ())</mat-option>
+      <mat-option value="'">Single Quote (')</mat-option>
+      <mat-option value=",">Comma (,)</mat-option>
+      <mat-option value="%">Percent (%)</mat-option>
+      <mat-option value="^">Power (^)</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-icon-button (click)="addSelectedOperator()" *ngIf="formulaForm.get('selectedOperator')?.value">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div class="formula-row">
+  <mat-form-field appearance="outline" class="full-width-input" >
+    <mat-label>Formula</mat-label>
+    <input matInput placeholder="Formula" type="text" formControlName="formula">
+  </mat-form-field>
+</div>
+
+
+</div>
+</div>
+      <div *ngIf="addedFormulas.length > 0" class="row">
+        <p *ngFor="let formula of addedFormulas" class="added-formula">{{ formula }}</p>
+      </div>
+   
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button color="warn" type="button" mat-dialog-close="false">Cancel</button>
+      <button mat-raised-button color="primary" type="button" (click)="onSaveClicked()">{{ data ? 'Update' : 'Save' }}</button>
+    </div>
+  </form>
+</mat-card>

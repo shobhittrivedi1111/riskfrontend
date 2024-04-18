@@ -1,0 +1,31 @@
+<div class="btn">
+    <button mat-fab extended color="accent"
+   (click)="scoreCapForm()">Add Score Cap</button>
+  </div>
+  
+  <div class="main-body">
+    <div class="card-container" *ngIf="dataSource?.data" [@cardAnimation]="dataSource.data.length">
+      <mat-card *ngFor="let row of dataSource.data" >
+        <mat-card-header>
+          <mat-card-content>
+            <mat-card-title class="title">Condition :</mat-card-title>
+            <mat-card-subtitle class="subtitle">{{row.conditionValue}}&nbsp;{{row.riskScoreLevel.level}}</mat-card-subtitle>
+            <mat-card-title class="title"> TotalRiskCappedScore : </mat-card-title> 
+            <mat-card-subtitle class="subtitle">{{ row.total_risk_capped_score }}</mat-card-subtitle>
+          </mat-card-content>
+        
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-icon-button color="primary" (click)="openEditScoreCapForm(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteScoreCap(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  
+  
+  

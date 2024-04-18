@@ -1,0 +1,15 @@
+  <div class="main-body">
+    <div class="card-container"
+      *ngIf="dataSource?.data" [@cardAnimation]="dataSource.data.length">
+      <mat-card *ngFor="let row of dataSource.data">
+        <mat-card-header>
+          <mat-card-title>{{row.companyName }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor="let output of row.formulaOutput | keyvalue" class="dimension">
+            <p>{{ output.key}}: {{ output.value }}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  

@@ -1,0 +1,40 @@
+<div class="btn">
+    <button mat-fab extended color="accent"
+   (click)="companyFormulaForm()">ADD Dimension Weight</button>
+   &nbsp;
+   <button mat-fab extended color="accent" (click)="submitData()">Save Details</button>
+  </div>
+  
+  <div class="main-body">
+    <div class="card-container" *ngIf="dataSource?.data" [@cardAnimation]="dataSource.data.length">
+      <mat-card *ngFor="let row of dataSource.data" >
+        <mat-card-header>
+          <mat-card-title>Dimesion Weight</mat-card-title>
+          <mat-card-subtitle>{{row.dimension}}</mat-card-subtitle>
+          <mat-card-subtitle>{{ parseAndRoundWeight(row.weight) }}%</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-icon-button color="primary" (click)="openEditCompanyFormulaForm(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteFormula(row.dimension)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    
+  </div>
+  <div  class="mat-bar">
+    <div >{{'Note: Dimesion-Weight Sum Must Be 100%'}}</div>
+    <mat-progress-bar mode="determinate" [value]="calculateWeightSum()" 
+    [bufferValue]="100" class="margin-progress-bar"></mat-progress-bar>
+    <!-- <div class="percentage-text" >{{ calculateWeightSum() | number:'1.0-2' }}%</div>  -->
+  </div>
+ 
+  
+
+
+
+  
+  

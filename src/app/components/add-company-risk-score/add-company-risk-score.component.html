@@ -1,0 +1,34 @@
+<form [formGroup]="companyForm">
+  <div>
+    <mat-form-field>
+      <mat-label>Company Name</mat-label>
+      <input matInput appearance="outline" type="text" 
+      oninput="this.value = this.value.replace(/[^a-zA-Z ]+/g, '')"  formControlName="companyName" required>
+    </mat-form-field>
+  </div>
+
+  <div formArrayName="dimensions">
+    <div *ngFor="let dimension of dimensions.controls; let i = index" class="dimension">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <mat-label>Dimension Key</mat-label>
+          <input matInput appearance="outline" type="text" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')" formControlName="key" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Dimension Value</mat-label>
+          <input matInput appearance="outline" type="text"
+          oninput="this.value = this.value.replace(/[^0-9]/g, ''); 
+                    if (!/^(?:[1-9]|[1-9][0-9]|100)$/.test(this.value)) this.value = '';"
+          formControlName="value" required>
+        </mat-form-field>
+        <button mat-icon-button color="warn" (click)="removeDimension(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+<div button-container>
+  <button mat-fab extended color="accent" (click)="addDimension()" class="add-dimension">Add Dimension</button>
+  <button mat-fab extended color="primary" (click)="submitForm()">Submit</button>
+</div>
+</form>

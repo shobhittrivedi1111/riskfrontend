@@ -1,0 +1,25 @@
+<div class="card">
+  <h2>{{ companyName }}</h2>
+  <div class="data">
+    <div *ngFor="let dimension of dimensions; let i = index" class="dimension">
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="dimension.name" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')" placeholder="Dimension Key">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="dimension.value"
+        oninput="this.value = this.value.replace(/[^0-9]/g, ''); 
+                    if (!/^(?:[1-9]|[1-9][0-9]|100)$/.test(this.value)) this.value = '';"
+         placeholder="Dimension Value">
+      </mat-form-field>
+      <button mat-icon-button color="warn" (click)="removeDimension(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <div>
+      <mat-card-actions>
+    <button mat-fab extended color="accent" (click)="addDimension()">New Dimension</button>
+  <button mat-fab extended color="primary" (click)="saveChanges()">Save Changes</button>
+</mat-card-actions>
+</div>
+</div>
+

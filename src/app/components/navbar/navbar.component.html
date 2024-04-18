@@ -1,0 +1,86 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Risk Calculation App</span>
+    <span class="example-spacer"></span>
+    <a mat-fab extended color="accent"  (click)="goToTrigger()">Trigger</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-drawer-container class="container">
+  <mat-drawer #sidenav mode="side">
+    <div class="example-button-container ">
+    <mat-nav-list >
+      <div><a mat-fab color="accent" (click)="goToHome()" >
+          <mat-icon>home</mat-icon></a>
+       </div>
+      <div><a mat-fab extended color="accent"
+      (click)="goToCompany()">Company Dimension</a>
+     </div>
+     <div><a mat-fab extended color="accent"
+      (click)="goToDimensionWeight()">Dimension Weight</a>
+     </div>
+     <div><a mat-fab extended color="accent"
+      (click)="goToFormula()">Formula</a>
+     </div>
+     <div><a mat-fab extended color="accent"
+      (click)="goToRiskScoreLevel()">Risk Score Level</a>
+     </div>
+     <div><a mat-fab extended color="accent"
+      (click)="goToScoreCap()">Score Cap</a>
+     </div>
+     <div><a mat-fab extended color="accent"
+      (click)="goToOutput()">Output</a>
+     </div>   
+    </mat-nav-list>
+  </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div style="height: 88vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<!-- <mat-drawer-container class="container">
+  <mat-drawer #sidenav mode="side">
+    <div class="example-button-container">
+      <mat-nav-list>
+        <div><a mat-fab color="accent">
+          <mat-icon>home</mat-icon></a>
+        </div>
+        <div><a mat-fab extended color="accent" (click)="goToCompany()">Company Risk Score</a></div>
+        <div><a mat-fab extended color="accent" (click)="goToDimensionWeight()">Dimension Weight</a></div>
+        <div><a mat-fab extended color="accent" (click)="goToFormula()">Formula</a></div>
+        <div><a mat-fab extended color="accent" (click)="goToRiskScoreLevel()">Risk Score Level</a></div>
+        <div><a mat-fab extended color="accent" (click)="goToScoreCap()">Score Cap</a></div>
+        <div><a mat-fab extended color="accent" (click)="goToOutput()">Output</a></div>   
+      </mat-nav-list>
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Risk Calculation App</span>
+        <span class="example-spacer"></span>
+        <a mat-raised-button color="accent" (click)="goToPage()">Trigger</a>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div style="height: calc(88vh - 64px);">
+      <router-outlet></router-outlet>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; Your Company 2023. All rights reserved.</p>
+    </footer>
+  </mat-drawer-content>
+</mat-drawer-container>
+ -->
